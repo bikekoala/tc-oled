@@ -1,0 +1,24 @@
+{
+  "name": "tc-oled",
+  "version": "0.1.0",
+  "description": "thinkcentre ssd1309 oled monitor",
+  "author": "BikeKoala",
+  "license": "ISC",
+  "scripts": {
+    "start": "TZ='Asia/Shanghai' node src/scripts/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bikekoala/tc-oled.git"
+  },
+  "dependencies": {
+    "coffee-script": "^1.12.7",
+    "dotenv": "^8.2.0",
+    "i2c": "^0.2.5",
+    "moment": "^2.29.1",
+    "oled-font-5x7": "^1.0.3",
+    "pngparse": "^2.0.1",
+    "systeminformation": "^4.32.0",
+    "twitter": "^1.7.1"
+  }
+}
