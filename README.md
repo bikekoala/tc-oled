@@ -9,7 +9,7 @@ i2c ssd1309 1.54' OLED, Lenovo ThinkCentre M920q with Elementary OS (Ubuntu 18.0
 ```python
 git clone https://github.com/bikekoala/tc-oled.git
 cd tc-oled
-mv env .env
+cp .env.example .env
 npm start
 ```
 
