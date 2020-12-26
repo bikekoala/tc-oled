@@ -55,8 +55,8 @@ const allocXY = (maxX, maxY) => {
 const calcElementXY = (x, y, height) => {
   height = typeof height === 'number' ? height : font.height
 
-  const nx = x + mData.iconSize + mData.eleSpacing
-  const ny = y + Math.round((mData.iconSize - height) / 2)
+  const nx = x + mData.icon.width + mData.eleSpacing
+  const ny = y + Math.round((mData.icon.height - height) / 2)
 
   return {
     x: nx,
@@ -69,7 +69,7 @@ const calcElementXY = (x, y, height) => {
  */
 const calcElementDigitXY = (x, y, count = 2) => {
   const nx = x + mData.width - (mData.digit.width * count + mData.digit.spacing)
-  const ny = y + Math.round((mData.iconSize - mData.digit.height) / 2)
+  const ny = y + Math.round((mData.icon.height - mData.digit.height) / 2)
 
   return {
     x: nx,
@@ -307,7 +307,7 @@ const showNetwork = (x, y) => {
     const drawTweet = () => {
       getTweet().then(tweet => {
         clearInterval(intervalId)
-        const width = x + mData.width - mData.iconSize - mData.eleSpacing
+        const width = x + mData.width - mData.icon.width - mData.eleSpacing
         const coord = calcElementXY(x, y)
         intervalId = scrollTextLeft(coord.x, coord.y, tweet + ' ', width)
         mData.intervalIDs.push(intervalId)
@@ -323,11 +323,12 @@ const showNetwork = (x, y) => {
  * display modules
  */
 const run = () => {
-  const spacingY = mData.iconSize + mData.modSpacing
+  const spacingY = mData.icon.height + mData.modSpacing
   const maxX = mOled.WIDTH - mData.width - 1
   let maxY = mOled.HEIGHT - mData.height - 1
   let { x, y } = allocXY(maxX, maxY)
 
+  clearOLED()
   showCpuUsage(x, y)
   showMemoryUsage(x, y += spacingY)
   showSystemInfo(x, y += spacingY)
@@ -338,10 +339,13 @@ const run = () => {
 const mData = {
   width: 125,      // available width
   height: 56,      // available height
-  iconSize: 12,    // icon width & height
   eleSpacing: 4,   // element spacing
   modSpacing: 3,   // module spacing
   intervalIDs: [], // interval ids
+  icon: {          // icon
+    width: 12,
+    height: 12
+  },
   digit: {         // dot number
     width: 5,
     height: 9,
@@ -351,13 +355,9 @@ const mData = {
 const mOled = initOLED()
 
 run()
-setInterval(() => {
-  clearOLED()
-  run()
-}, 600000)
+setInterval(() => run(), 60000)
 
 // clear display when catch an signal
 process.on('SIGINT', () => {
-  clearOLED()
   setTimeout(() => process.exit(), 1000)
 })
