@@ -6,9 +6,13 @@ i2c ssd1309 1.54' OLED, Lenovo ThinkCentre M920q with Elementary OS (Ubuntu 18.0
 
 ## Usage
 
-```python
+```bash
 git clone https://github.com/bikekoala/tc-oled.git
 cd tc-oled
+
+sudo insmod doc/drivers/i2c-ch341-usb.ko
+sudo chmod 0777 /dev/i2c*
+
 cp .env.example .env
 npm start
 ```
