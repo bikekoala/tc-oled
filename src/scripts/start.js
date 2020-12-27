@@ -359,5 +359,6 @@ setInterval(() => run(), 60000)
 
 // clear display when catch an signal
 process.on('SIGINT', () => {
-  setTimeout(() => process.exit(), 1000)
+  mOled.turnOffDisplay()
+  process.exit()
 })

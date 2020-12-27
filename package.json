@@ -1,11 +1,12 @@
 {
   "name": "tc-oled",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "thinkcentre ssd1309 oled monitor",
   "author": "BikeKoala",
   "license": "ISC",
   "scripts": {
-    "start": "TZ='Asia/Shanghai' node src/scripts/run.js"
+    "start": "TZ='Asia/Shanghai' node src/scripts/start.js",
+    "stop": "TZ='Asia/Shanghai' node src/scripts/stop.js"
   },
   "repository": {
     "type": "git",
